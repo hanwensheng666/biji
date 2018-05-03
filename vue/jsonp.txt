@@ -1,0 +1,11 @@
+下载
+npm install vue-jsonp --save
+引入
+import VueJsonp from 'vue-jsonp'
+Vue.use(VueJsonp)
+用法
+this.$jsonp(rootApi+'/company/Info'', 传参参数对象{} ).then(json => {
+　　// 返回数据 json， 返回的数据就是json格式
+}).catch(err => {
+　　console.log(err)
+})

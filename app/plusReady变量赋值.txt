@@ -1,0 +1,9 @@
+mui.plusReady里面的变量外部无法访问
+目前没有啥好办法解决
+
+上大招解决
+var cookietext = plus.navigator.getCookie("http://2036304ec7.iask.in:42839/");
+var appElement = document.querySelector('[ng-controller=myctrl]');
+var $scope = angular.element(appElement).scope();
+$scope.user = JSON.parse($scope.cookie(cookietext,"user"));
+$scope.$apply();

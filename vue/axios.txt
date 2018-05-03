@@ -1,0 +1,13 @@
+下载
+npm install axios --save
+引入
+import axios from "axios"
+设置地址前缀
+axios.defaults.baseURL="http://hanwensheng666.uicp.cn:47330"
+在组件中还需要再次引入
+import axios from 'axios'
+post请求
+axios.post('/pizzaPHP/user/regist.php',formdata)
+	.then(res=>{
+		console.log(res);
+	})

@@ -1,0 +1,46 @@
+export const routes = [
+	{path:"/",name:"homelink",components:{
+		//路由复用
+		default:home,
+		'orderingGuide':orderingGuide,
+		'delivery':delivery,
+		'history':History
+	}},
+	{path:"/menu",name:"menulink",component:menu},
+	{path:"/login",name:"loginlink",component:login},
+	{path:"/regist",name:"registlink",component:regist},
+	{path:"/admin",name:"adminlink",component:admin/*,beforeEnter:(to,from,next)=>{
+		//路由独享守卫
+		alert("非登陆状态不能访问此页面！");
+		next(false);
+	}*/},
+	{path:"/about",name:"aboutlink",redirect:"/about/contact",component:About,children:
+		[
+			{path:"/about/contact",name:"contactlink",redirect:"/about/contact/phone",component:contact,children:[
+				{path:"/about/contact/phone",name:"phonenumber",component:Phone},
+				{path:"/about/contact/personName",name:"personName",component:PersonName}
+			]},
+			{path:"/about/history",name:"historylink",component:History},
+			{path:"/about/delivery",name:"deliverylink",component:delivery},
+			{path:"/about/orderingGuide",name:"orderingGuidelink",component:orderingGuide},
+		]
+	},
+	{path:"*",redirect:"/"}//如果以上都没有匹配到，跳转到跟路径
+]
+
+
+
+//调用
+ <div class="container">
+	  	<div class="row">
+	  		<div class="col-sm-12 col-md-4">
+	  			<router-view name="orderingGuide"></router-view>
+	  		</div>
+	  		<div class="col-sm-12 col-md-4">
+	  			<router-view name="history"></router-view>
+	  		</div>
+	  		<div class="col-sm-12 col-md-4">
+	  			<router-view name="delivery"></router-view>
+	  		</div>
+	  	</div>
+	  </div>

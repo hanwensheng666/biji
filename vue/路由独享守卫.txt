@@ -1,0 +1,49 @@
+//路由独享守卫
+const routes = [ 
+	{path:"/",name:"homelink",component:home},
+	{path:"/menu",name:"menulink",component:menu},
+	{path:"/login",name:"loginlink",component:login},
+	{path:"/regist",name:"registlink",component:regist},
+	{path:"/admin",name:"adminlink",component:admin,beforeEnter:(to,from,next)=>{
+		//路由独享守卫
+		alert("非登陆状态不能访问此页面！");
+		next(false);
+	}},
+	{path:"/about",name:"aboutlink",redirect:"/about/contact",component:About,children:
+		[
+			{path:"/about/contact",name:"contactlink",redirect:"/about/contact/phone",component:contact,children:[
+				{path:"/about/contact/phone",name:"phonenumber",component:Phone},
+				{path:"/about/contact/personName",name:"personName",component:PersonName}
+			]},
+			{path:"/about/history",name:"historylink",component:History},
+			{path:"/about/delivery",name:"deliverylink",component:delivery},
+			{path:"/about/orderingGuide",name:"orderingGuidelink",component:orderingGuide},
+		]
+	},
+	{path:"*",redirect:"/"}//如果以上都没有匹配到，跳转到跟路径
+]
+
+
+//后置钩子   to:要去的路由 from ：从哪个路由离开的
+router.afterEach((to,from)=>{
+//	alert("after Each");
+})
+
+
+//组件内守卫
+/*beforeRouteEnter:(to,from,next)=>{
+//			alert("hello"+this.name); //hello undifined   这时候还没有加载数据，我们可以使用next的回调函数来获取数据
+
+			next(vm=>{
+				//这是一个一部操作，当这个运行时，data早已渲染完毕
+				alert("hello" + vm.name);
+			})
+		}*/
+		beforeRouteLeave(to,from,next){
+			//用于未保存的表单页面
+			if(confirm("确认离开？")){
+				next();
+			}else{
+				next(false);
+			}
+		}

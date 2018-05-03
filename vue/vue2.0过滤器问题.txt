@@ -1,0 +1,34 @@
+Vue2.0删除了很多1.0的比较实用的过滤器，如filterBy，orderBy。 现在需要使用计算属性来做
+<body>
+    <div class="app">
+        <input type="text" v-model="name">
+        <ul>
+            <li v-for="user in newUsers" >
+                {{ user.name }}
+            </li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: '.app',
+            data: {
+                name: '',
+                users: [
+                    { name: 'Bruce' },
+                    { name: 'Chuck' },
+                    { name: 'Jackie' },
+                    { name: '赵' }
+                ] 
+            },
+            computed: {
+                newUsers: function () {
+                    var that = this;
+                    return that.users.filter(function (user) {
+                        return user.name.toLowerCase().indexOf(that.name.toLowerCase()) !== -1;
+                    })
+                }
+
+            }
+        })
+    </script>
+</body>

@@ -1,0 +1,16 @@
+//全局守卫的使用
+router.beforeEach((to,from,next)=>{
+	console.log(to.path);
+	//判断store.gettes.isLogin == false
+	if(to.path == '/login' || to.path == "/regist"){
+		//通行
+		next();
+	}else{
+		alert("您还没有登陆，请先登陆！");
+		next("/login");
+	}
+})
+
+
+首位相当于java中的filter，只有特定情况下才能访问某些页面，
+如上述，登录后才能访问其他页面，否则只能跳转到登陆注册页面

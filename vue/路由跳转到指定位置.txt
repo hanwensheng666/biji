@@ -1,0 +1,21 @@
+<script>
+	export default{
+		methods:{
+			gotomenu(){
+				//跳转到上一次浏览的页面
+				/*this.$router.go(-1);*/
+				
+				//跳转到指定地址
+//				this.$router.replace('/menu');
+				
+				//跳转到指定路由名字下
+//				this.$router.replace({name:'loginlink'});
+				
+				//利用push跳转
+//				this.$router.push("/menu");
+				this.$router.push({name:"loginlink"})
+				
+			}
+		}
+	}
+</script>

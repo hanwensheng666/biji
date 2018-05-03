@@ -1,0 +1,47 @@
+首先需要下载vue-router
+npm install vue-router --save
+
+main.js  引入vue-router
+import vueRouter from"vue-router"
+
+启用 vue-router
+Vue.use(VueRouter);
+
+设置路由配置
+const routes = [ 
+	{path:"/",component:home},
+	{path:"/menu",component:menu},
+	{path:"/login",component:login},
+	{path:"/regist",component:regist},
+	{path:"/admin",component:admin},
+	{path:"/about",component:About}
+]
+
+创建路由对象
+const router = new VueRouter({
+	routes,
+	mode:"history"
+})
+
+在Vue对象中引用路由对象
+new Vue({
+	router,
+  el: '#app',
+  render: h => h(App)
+})
+
+
+使用路由跳转
+<ul class="navbar-nav">
+				<li><router-link to="/" class="nav-link">主页</router-link></li>
+				<li><router-link to="menu" class="nav-link">菜单</router-link></li>
+				<li><router-link to="admin" class="nav-link">管理</router-link></li>
+				<li><router-link to="about" class="nav-link">关于我们</router-link></li>
+			</ul>
+			<ul class="navbar-nav ml-auto">
+				<li><router-link to="login" class="nav-link">登陆</router-link></li>
+				<li><router-link to="regist" class="nav-link">注册</router-link></li>
+			</ul>
+
+路由跳转的容器
+<router-view></router-view>

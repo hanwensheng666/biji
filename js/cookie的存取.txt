@@ -1,0 +1,29 @@
+存cookie
+var date=new Date();
+var expiresDays=10;
+date.setTime(date.getTime()+expiresDays*24*3600*1000);//10天后cookie过期
+document.cookie="user="+escape(JSON.stringify(data))+"; expires="+date.toGMTString()+";path=/";
+
+
+
+取cookie
+var app = angular.module('myapp', []);
+	app.controller('myctrl', ['$scope', '$http', function(a, b) {
+		a.cookie=function(Name){
+			var search = Name + "=" //查询检索的值
+			var returnvalue = ""; //返回值
+			if(document.cookie.length > 0) {
+				sd = document.cookie.indexOf(search);
+				if(sd != -1) {
+					sd += search.length;
+					end = document.cookie.indexOf(";", sd);
+					if(end == -1)
+						end = document.cookie.length;
+					//unescape() 函数可对通过 escape() 编码的字符串进行解码。
+					returnvalue = unescape(document.cookie.substring(sd, end))
+				}
+			}
+			return returnvalue;
+		}
+		a.user=JSON.parse(a.cookie('user'));
+	}])

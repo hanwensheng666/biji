@@ -1,0 +1,19 @@
+使用json-server
+模拟数据
+第一步先安装json-server
+npm install -g json-server
+
+然后创建一个文件夹，在里面npm init 搞一个package.json
+
+然后在文件夹中安装json-server 并保存到依赖项中
+npm install json-server --save
+然后创建自己的模拟数据  db.json
+里面写点数据
+然后修改package.json
+"scripts": {
+    "json:server": "json-server --watch db.json"
+  },
+
+然后运行它
+npm run json:server
+模拟后台数据成功开启！OJBK！

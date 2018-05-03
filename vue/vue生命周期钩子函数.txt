@@ -1,0 +1,24 @@
+钩子就好像是把人的出生到死亡分成一个个阶段，
+组件也是一样，每个阶段它的内部构造是不一样的。所以一般特定的钩子做特定的事，
+比如ajax获取数据就可以在mounted阶段。
+
+它可以总共分为8个阶段：
+beforeCreate（创建前）,
+created（创建后）,
+beforeMount(载入前),
+mounted（载入后）,
+beforeUpdate（更新前）,
+updated（更新后）,
+beforeDestroy（销毁前）,
+destroyed（销毁后）
+
+
+
+beforecreated：el 和 data 并未初始化 
+created:完成了 data 数据的初始化，el没有
+beforeMount：完成了 el 和 data 初始化 
+mounted ：完成挂载
+beforeupdate 更新前
+update 完成更新
+beforeDestory： 你确认删除XX吗？ 
+destoryed ：当前组件已被删除，清空相关内容

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="js/angular-min.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<body ng-app="myapp" ng-controller="myctrl">
+		<ul>
+			<li ng-repeat="x in arr track by $index">{{x}}</li>
+		</ul>
+	</body>
+</html>
+<script type="text/javascript" charset="utf-8">
+    var app = angular.module('myapp',[]);
+    app.controller('myctrl',function($scope){
+    	$scope.arr = [1,1,3,4,5];
+    })
+</script>
+
+
+解决方案 ：track by $index
+默认在ng-repeat的时候每一个item都要保证是唯一的，否则console就会打出error告诉你哪个key/value是重复的。指定跟踪值唯一可以了

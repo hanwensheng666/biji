@@ -1,0 +1,38 @@
+设置cookie
+var date=new Date();
+						var expiresDays=10;
+						date.setTime(date.getTime()+expiresDays*24*3600*1000);//10天后cookie过期
+						plus.navigator.setCookie('http://2036304ec7.iask.in:42839/',"user="+escape(JSON.stringify(data))+"; expires="+date.toGMTString()+";path=/");
+
+angular中获取cookie 
+var cookietext = plus.navigator.getCookie("http://2036304ec7.iask.in:42839/");
+	var appElement = document.querySelector('[ng-controller=myctrl]');
+	var $scope = angular.element(appElement).scope();
+	if($scope.cookie(cookietext,"user") != ""){
+		$scope.user = JSON.parse($scope.cookie(cookietext,"user"));
+		$scope.islogin = true;
+		$scope.$apply();
+	}
+
+a.cookie=function(cookietext,Name){
+			var search = Name + "=" //查询检索的值
+			var returnvalue = ""; //返回值
+			if(cookietext.length > 0) {
+				sd = cookietext.indexOf(search);
+				if(sd != -1) {
+					sd += search.length;
+					end = cookietext.indexOf(";", sd);
+					if(end == -1)
+						end = cookietext.length;
+					//unescape() 函数可对通过 escape() 编码的字符串进行解码。
+					returnvalue = unescape(cookietext.substring(sd, end))
+
+
+
+删除cookie
+plus.navigator.setCookie('http://2036304ec7.iask.in:42839/',"user=123; expires="+new Date().toGMTString()+";path=/");
+
+				}
+			}
+			return returnvalue;
+		}

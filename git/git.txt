@@ -1,0 +1,15 @@
+集中化的版本控制系统
+
+检查配置信息
+git config --list
+
+
+获取 Git 仓库
+
+git init  创建.git子目录
+
+git add * 将当前文件夹下文件加入本地仓库
+
+git add LICENSE 添加证书
+
+git commit -m "提交说明信息"

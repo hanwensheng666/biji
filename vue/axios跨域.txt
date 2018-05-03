@@ -1,0 +1,36 @@
+首先需要在config/index.js 中配置proxyTable
+ proxyTable: {
+    	'/apis': {
+        // 测试环境
+        target: 'http://www.thenewstep.cn/',  // 接口域名
+        changeOrigin: true,  //是否跨域
+        pathRewrite: {
+            '^/apis': ''   //需要rewrite重写的,替代目标地址
+        }              
+      }
+    },
+
+这个配置完后一定要重启服务器才能用
+	fetch 方式
+	fetch("/apis/test/testToken.php",{
+  		method:"post",
+  		header:{
+  			"Content-type":"application/json",
+  			token:"f4c902c9ae5a2a9d8f84868ad064e706"
+  		},
+  		body:JSON.stringify({username:"henry",password:"321321"})
+  	}).then(res=>{
+  		return res.json();
+  	}).then(data=>{
+  		console.log(data);
+  	})
+
+
+	axios方式
+	this.$axios.post("/apis/test/testToken.php",{username:"henry",password:"321321"})
+  	.then(res=>{
+  		return res.data;
+  	})
+  	.then(data=>{
+  		console.log(data);
+  	})

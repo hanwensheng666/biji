@@ -1,0 +1,15 @@
+
+const router = new VueRouter({
+	routes,
+	mode:"history",
+	scrollBehavior(to,from,savedPosition){
+//		return {x:0,y:100}
+//		return {selector:'.btn'}//直接显示到btn的位置
+		if(savedPosition){
+			//savedPosition 记录浏览器上一次离开时浏览的位置
+			return savedPosition;
+		}else{
+			return {x:0,y:100};
+		}
+	}
+})

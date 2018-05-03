@@ -1,0 +1,35 @@
+app.config(function($routeProvider) {
+		$routeProvider.
+		when('/dropdown1', {
+			templateUrl: 'template/dropdown1.html',
+			controller: 'myctrl1'
+		}).
+		when('/dropdown2', {
+			templateUrl: 'template/dropdown2.html',
+			controller: 'myctrl2'
+		}).
+		when('/dropdown3', {
+			templateUrl: 'template/dropdown3.html',
+			controller: 'myctrl3'
+		}).when('/dropdown4', {
+			templateUrl: 'template/dropdown4.html',
+			controller: 'myctrl4'
+		}).
+		otherwise({
+			redirectTo: '/dropdown1'
+		});
+	}).run(['$rootScope', '$location', function($rootScope, $location) {
+//		 监听路由的状态变化 
+		$rootScope.$on('$routeChangeStart', function(evt, next, current){
+			console.log('kk')
+		}); 
+		$rootScope.$on('$routeChangeSuccess', function(evt, current, previous) {
+			var index = parseInt($location.path().charAt($location.path().length-1))-1;
+			$('.product-condition span').each(function(){
+	    		$(this).removeClass('active');
+	    	});
+			console.log(index)
+	    	$('.product-condition span').eq(index).addClass('active');
+	    	$('.dropdown').stop().slideDown(100);
+		}); 
+	}])

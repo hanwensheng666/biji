@@ -1,0 +1,20 @@
+mui.plusReady(function() {
+		
+		plus.storage.setItem("lauchFlag",true);
+var all = plus.webview.all(); //选择所有打开的页面
+var current = plus.webview.currentWebview().id;
+for(var i = 0; i < all.length; i++) {
+	if(all[i].id != current) {
+		all[i].close();
+	}
+}
+mui.back = function() {
+        var btn = ["确定","取消"];  
+mui.confirm('确认退出？','提示',btn,function(e){  
+if(e.index==0){  
+  //mui.currentWebview.close();  
+                  plus.runtime.quit();  
+                }  
+            });  					
+	}
+});
